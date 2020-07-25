@@ -1,0 +1,8 @@
+function [u,s,v] = calculateSingularValues(Xtotal)
+%UNTITLED5 calculates singular values from mean stu
+%   Detailed explanation goes here
+
+%Take SVD of whole train set
+[u,s,v]=svd(Xtotal-mean(Xtotal(:)),'econ');
+end
+

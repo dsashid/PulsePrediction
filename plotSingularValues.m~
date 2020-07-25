@@ -1,0 +1,15 @@
+function []= plotSingularValues(s)
+%PLOTSINGULARVALUES plotspe
+%   Detailed explanation goes here
+
+%Make SVD plot 
+figure(2)
+set(groot,'defaulttextinterpreter','latex');  
+set(groot, 'defaultAxesTickLabelInterpreter','latex');  
+set(groot, 'defaultLegendInterpreter','latex');
+plot(diag(s)./sum(diag(s)),'ro')
+title('Normalized Singular Modes')
+xlabel('Mode Number')
+ylabel('Magnitude')
+end
+
