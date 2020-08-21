@@ -24,11 +24,11 @@ n_pulseless = 561;
 %% Load data
 %for CPR
 if (CPRflag ==1)
-        CPR_data=load('../data/scalograms_pulsePredict_CPR.mat');
+        CPR_data=load('scalograms_pulsePredict_CPR.mat');
         scalogram_data = CPR_data.Xtotal;
 else
 %for noCPR
-        noCPR_data = load('../data/scalograms_pulsePredict_noCPR.mat');
+        noCPR_data = load('scalograms_pulsePredict_noCPR.mat');
         scalogram_data = noCPR_data.Xtotal;
 end
 %TODO: Describe format of datasets/labels
