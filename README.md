@@ -27,4 +27,4 @@ The results of the paper use the following files.
   - `NN_pulsepredict.m` : classifies modes using NN
   - `heartRateDetector`: calculates heart rate by using number of QRS complexes and multiplying by corresponding factor
 
-Note: to run `heartRateDetector.m`, you must need a 10 second ECG clip. `heartRateDetector.m` does not work on scalogram data.
+Note: to run `heartRateDetector.m`, you must have a 10 second ECG clip. `heartRateDetector.m` does not work on scalogram data.
