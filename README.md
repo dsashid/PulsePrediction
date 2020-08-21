@@ -8,14 +8,14 @@ The following code was generated using MATLAB R2018b.
 ## Setup
 - Clone repository
 - Download [dataset](https://doi.org/10.5281/zenodo.3995071) and make sure the data is in the same folder as the cloned repository.
-- Run `pulse_predict_main.m`
+- Run `pulsePredict_main.m`
 
 ## Data
 Data can be found [here](https://doi.org/10.5281/zenodo.3995071). Data is in the form of ECG scalograms with and without CPR. `scalograms_pulsePredict_CPR.mat` is comprised of columns of reshaped scalograms for a 10-second ECG clip while patient is undergoing CPR. `scalograms_pulsePredict_noCPR.mat` is comprised of columns of reshaped scalograms for a 5-second ECG clip while patient is not undergoing CPR.
 
 ## Modeling/Visualization
 The results of the paper use the following files. 
-- `pulse_predict_main.m`: main template that runs supplementary functions:
+- `pulsePredict_main.m`: main template that runs supplementary functions:
   - `calculateSingularValues.m` : runs principal component analysis (PCA) on scalogram data and generates modes
   - `plotSingularValues.m` : plots normalized singular values/percent variance
   - `plotTemporalModes.m` : plots first three temporal modes of PCA and projects onto 3D space
