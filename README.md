@@ -11,7 +11,7 @@ The following code was generated using MATLAB R2018b.
 - Run `pulse_predict_main.m`
 
 ## Data
-Data can be found [here](https://doi.org/10.5281/zenodo.3995071). Data is in the form of ECG scalograms with and without CPR. scalograms_pulsePredict_CPR.mat is comprised of columns of reshaped scalograms for a 10-second ECG clip.
+Data can be found [here](https://doi.org/10.5281/zenodo.3995071). Data is in the form of ECG scalograms with and without CPR. `scalograms_pulsePredict_CPR.mat` is comprised of columns of reshaped scalograms for a 10-second ECG clip while patient is undergoing CPR. `scalograms_pulsePredict_noCPR.mat` is comprised of columns of reshaped scalograms for a 5-second ECG clip while patient is not undergoing CPR.
 
 ## Modeling/Visualization
 The results of the paper use the following files. 
