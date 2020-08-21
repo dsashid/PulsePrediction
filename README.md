@@ -7,20 +7,24 @@ The following code was generated using MATLAB R2018b.
 
 ## Setup
 - Clone repository
-- Run pulse_predict.main
+- Download (dataset)[https://doi.org/10.5281/zenodo.3995071] and make sure the data is in the same folder as the cloned repository.
+- Run `pulse_predict_main.m`
+
+## Data
+Data can be found (here) [https://doi.org/10.5281/zenodo.3995071]. Data is in the form of ECG scalograms with and without CPR. scalograms_pulsePredict_CPR.mat is comprised of columns of reshaped scalograms for a 10-second ECG clip.
 
 ## Modeling/Visualization
 The results of the paper use the following files. 
-- pulse_predict.main: main template that runs supplementary functions:
-  - calculateSingularValues.m : runs principal component analysis (PCA) on scalogram data and generates modes
-  - plotSingularValues.m : plots normalized singular values/percent variance
-  - plotTemporalModes.m : plots first three temporal modes of PCA and projects onto 3D space
-  - createHistograms.m : generates histograms for modes with and without pulse
-  - createTrainTestSets.m : 
-  - classifyModes.m: classifies modes using discriminant model
-  - convNNPulsePrediction.m : classifies scalograms using convolutional NN
-  - gmmModelPulsePredict.m : classifies modes using GMM
-  - NN_pulsepredict.m : classifies modes using NN
-  - heartRateDetector: calculates heart rate by using number of QRS complexes and multiplying by corresponding factor
+- `pulse_predict_main.m`: main template that runs supplementary functions:
+  - `calculateSingularValues.m` : runs principal component analysis (PCA) on scalogram data and generates modes
+  - `plotSingularValues.m` : plots normalized singular values/percent variance
+  - `plotTemporalModes.m` : plots first three temporal modes of PCA and projects onto 3D space
+  - `createHistograms.m` : generates histograms for modes with and without pulse
+  - `createTrainTestSets.m`: generates randomly selected training and test sets stratified by patient
+  - `classifyModes.m`: classifies modes using discriminant model
+  - `convNNPulsePrediction.m`: classifies scalograms using convolutional NN
+  - `gmmModelPulsePredict.m` : classifies modes using GMM
+  - `NN_pulsepredict.m` : classifies modes using NN
+  - `heartRateDetector`: calculates heart rate by using number of QRS complexes and multiplying by corresponding factor
 
-Note: to run heartRateDetector, you must need a 10 second ECG clip. heartRateDetector does not work on scalogram data.
+Note: to run `heartRateDetector.m`, you must need a 10 second ECG clip. `heartRateDetector.m` does not work on scalogram data.
