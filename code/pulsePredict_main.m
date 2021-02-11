@@ -8,7 +8,7 @@
 clear;clc;close all;
 %% PARAMETERS
 %CPR flag is 1 for CPR artifacted data, 0 for data without CPR
-CPRflag = 1;
+CPRflag = 0;
 
 %start index of pulse clips in training/test set
 num_pulse_train = 211;
@@ -24,11 +24,11 @@ n_pulseless = 561;
 %% Load data
 %for CPR
 if (CPRflag ==1)
-        CPR_data=load('scalograms_pulsePredict_CPR.mat');
+        CPR_data=load('../data/scalograms_pulsePredict_CPR.mat');
         scalogram_data = CPR_data.Xtotal;
 else
 %for noCPR
-        noCPR_data = load('scalograms_pulsePredict_noCPR.mat');
+        noCPR_data = load('../data/scalograms_pulsePredict_noCPR.mat');
         scalogram_data = noCPR_data.Xtotal;
 end
 %TODO: Describe format of datasets/labels
@@ -46,6 +46,7 @@ plotTemporalModes(v,n_pulse);
 createHistograms(v,n_pulse);
 %% Create training/test Sets
 %range of modes to train on 
+
 range =1:3;
 
 %create training and test sets using temporal modes of scalograms
@@ -56,24 +57,30 @@ range =1:3;
 %and discriminantType to 'Linear' to see validation results
 train_testFlag = 1;
 
-%linear/quadratic discriminant
+%linear/quadraticdiscriminant/SVM
 discriminantType = 'Linear';
-[X,Y,AUC_linear] = classifyModes(trainmat_mode, test_mode,labels_training,labels_test, discriminantType, train_testFlag);
+[X_lin,Y_lin,AUC_linear,opt_linear] = classifyModes(trainmat_mode, test_mode,labels_training,labels_test, discriminantType, train_testFlag);
 
 %compare to GMM
-[X,Y,AUC_trainGMM] = gmmModelPulsePredict(trainmat_mode,labels_training);
+[X,Y,AUC_trainGMM,opt_gmm] = gmmModelPulsePredict(trainmat_mode,labels_training);
 
 %compare to NN:
-[X,Y,AUC_trainNN] = NN_pulsepredict(trainmat_mode,labels_training);
+[X,Y,AUC_trainNN, opt_nn] = NN_pulsepredict(trainmat_mode,labels_training);
+
+%create RF
+[AUC_trainRF, opt_RF] = createRF(trainmat_mode,labels_training);
+
+[AUC_trainLR, opt_LR] = fitLR(trainmat_mode, labels_training);
 
 %compare to ConvNN using scalograms, not temporal modes
-[X,Y,AUC_train_CNN] =convNNPulsePrediction(scalogram_data,labels_training,CPRflag);
+% [X,Y,AUC_train_CNN, opt_cnn] =convNNPulsePrediction(scalogram_data,labels_training,CPRflag);
 
 %% option to include heart rate as a feature: 
 %NOTE: need actual ECG to calculate heartrate. Cannot use a scalogram 
 
 [HR_vec_train, median_interval_train] = heartRateDetector(X_train);
 [HR_vec_test, median_interval_test] = heartRateDetector(X_test);
+
 
 input = [trainmat_mode,HR_vec_train];
 
@@ -84,5 +91,5 @@ input = [trainmat_mode,HR_vec_train];
 [X,Y,AUC_trainGMM] = gmmModelPulsePredict(input,labels_training);
 
 %compare to NN:
-[X,Y,AUC_trainNN] = nnPulsePredict(input,labels_training);
+[X,Y,AUC_trainNN] = NN_PulsePredict(input,labels_training);
 
