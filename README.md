@@ -25,7 +25,7 @@ The results of the paper use the following files.
   - `convNNPulsePrediction.m`: classifies scalograms using convolutional NN
   - `gmmModelPulsePredict.m` : classifies modes using GMM
   - `createRF.m` : classifies modes using Random Forest
-  - `fitLR.m` : classifies modes using Random Forest
+  - `fitLR.m` : classifies modes using Logistic Regression 
   - `NN_pulsepredict.m` : classifies modes using NN
   - `heartRateDetector`: calculates heart rate by using number of QRS complexes and multiplying by corresponding factor
 
